@@ -61,15 +61,15 @@ public class JDBCExampleMySql {
             // The newInstance() call is a work around for some
             // broken Java implementations
 
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             Connection conn = null;
             Statement stmt = null;
             ResultSet rs = null;
             ArrayList<Persona> lista = new ArrayList<>();
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/laboratorio?" +
-                    "user=root&password=root");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/Universidad?" +
+                    "user=root&password=");
             stmt = conn.createStatement();
-            rs = stmt.executeQuery("SELECT * FROM persona");
+            rs = stmt.executeQuery("SELECT * FROM Persona");
             while(rs.next())
             {
                 Persona p = new Persona();
@@ -94,16 +94,16 @@ public class JDBCExampleMySql {
             // The newInstance() call is a work around for some
             // broken Java implementations
 
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             Connection conn = null;
             Statement stmt = null;
             String nombre ="Pedro";
             String apelldio = "Perez";
             String cedula = "5";
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/laboratorio?" +
-                    "user=root&password=root");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/Universidad?" +
+                    "user=root&password=");
             stmt = conn.createStatement();
-            stmt.execute("INSERT INTO persona(NOMBRE,APELLIDO,CEDULA) VALUES " +
+            stmt.execute("INSERT INTO Persona(NOMBRE,APELLIDO,CEDULA) VALUES " +
                     "('"+ nombre+ "','" + apelldio + "','" +
                     cedula + "')");
         } catch (Exception ex) {
@@ -117,17 +117,17 @@ public class JDBCExampleMySql {
             // The newInstance() call is a work around for someClass.forName("com.mysql.jdbc.Driver").newInstance();
             // broken Java implementations
 
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             Connection conn = null;
             Statement stmt = null;
             String nombre ="Ratón";
             String apellido = "Perez";
-            String cedula = "4";
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/laboratorio?" +
-                    "user=root&password=root");
+            String cedula = "5";
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/Universidad?" +
+                    "user=root&password=");
 
             stmt = conn.createStatement();
-            String cmdText = "UPDATE PERSONA SET nombre = '" +
+            String cmdText = "UPDATE Persona SET nombre = '" +
                     nombre + "',apellido = '" + apellido + "'" +
                     " WHERE cedula = '" + cedula + "'";
             stmt.execute(cmdText);
@@ -142,16 +142,16 @@ public class JDBCExampleMySql {
             // The newInstance() call is a work around for some
             // broken Java implementations
 
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             Connection conn = null;
             Statement stmt = null;
             String nombre ="Ratón";
             String apellido = "Perez";
             String cedula = "4";
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/laboratorio?" +
-                    "user=root&password=root");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/Universidad?" +
+                    "user=root&password=");
             stmt = conn.createStatement();
-            stmt.execute("DELETE  FROM PERSONA  WHERE cedula = '" + cedula + "'");
+            stmt.execute("DELETE  FROM Persona  WHERE cedula = '" + cedula + "'");
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
