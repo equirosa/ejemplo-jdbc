@@ -97,15 +97,13 @@ public class JDBCExampleMySql {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             Connection conn = null;
             Statement stmt = null;
-            String nombre ="Pedro";
-            String apelldio = "Perez";
-            String cedula = "5";
+            String[] info = pedirInfoPersona();
             conn = DriverManager.getConnection("jdbc:mysql://localhost/Universidad?" +
                     "user=root&password=");
             stmt = conn.createStatement();
             stmt.execute("INSERT INTO Persona(NOMBRE,APELLIDO,CEDULA) VALUES " +
-                    "('"+ nombre+ "','" + apelldio + "','" +
-                    cedula + "')");
+                    "('"+ info[0] + "','" + info[1] + "','" +
+                    info[2] + "')");
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -120,22 +118,31 @@ public class JDBCExampleMySql {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             Connection conn = null;
             Statement stmt = null;
-            String nombre ="Ratón";
-            String apellido = "Perez";
-            String cedula = "5";
+            String[] info = pedirInfoPersona();
             conn = DriverManager.getConnection("jdbc:mysql://localhost/Universidad?" +
                     "user=root&password=");
 
             stmt = conn.createStatement();
             String cmdText = "UPDATE Persona SET nombre = '" +
-                    nombre + "',apellido = '" + apellido + "'" +
-                    " WHERE cedula = '" + cedula + "'";
+                    info[0] + "',apellido = '" + info[1] + "'" +
+                    " WHERE cedula = '" + info[2] + "'";
             stmt.execute(cmdText);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
-
+    
+    private static String[] pedirInfoPersona() throws IOException {
+        String[] info = new String[3];
+        out.println("Introduzca el nombre de la persona.");
+        info[0]=in.readLine();
+        out.println("Introduzca el apellido de la persona.");
+        info[1]=in.readLine();
+        out.println("Introduzca la cedula de la persona.");
+        info[2]=in.readLine();
+        return info;
+    }
+    
     public  static void eliminar()
     {
         try {
@@ -145,9 +152,8 @@ public class JDBCExampleMySql {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             Connection conn = null;
             Statement stmt = null;
-            String nombre ="Ratón";
-            String apellido = "Perez";
-            String cedula = "4";
+            out.println("introduzca la cedula del usuario que desea eliminar.");
+            String cedula = in.readLine();
             conn = DriverManager.getConnection("jdbc:mysql://localhost/Universidad?" +
                     "user=root&password=");
             stmt = conn.createStatement();
