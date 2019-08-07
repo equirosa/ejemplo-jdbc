@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class JDBCExample{
     static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -59,6 +61,12 @@ public class JDBCExample{
             case 4:
                 eliminar();
                 break;
+            case 5:
+                registrarMascota();
+                break;
+            case 6:
+                listarMascotas();
+                break;
             case 0:
                 out.println("Adiós");
                 break;
@@ -66,6 +74,24 @@ public class JDBCExample{
                 out.println("Opción inválida");
         }
     }
+    
+    private static void registrarMascota() throws IOException {
+        String nombre,raza,cedula;
+        LocalDate fechaNac;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy");
+        out.println("introduzca el nombre de la mascota");
+        nombre=in.readLine();
+        out.println("introduzca su raza");
+        raza=in.readLine();
+        out.println("introduzca la fecha de nacimiento (YYYY/MM/DD)");
+        fechaNac=LocalDate.parse(in.readLine(),formatter);
+        listar();
+        out.println("seleccione la cedula de uno de las personas registradas.");
+        cedula=in.readLine();
+        
+        
+    }
+    
     public static void listar()
     {
         try {
