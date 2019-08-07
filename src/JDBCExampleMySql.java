@@ -56,7 +56,6 @@ public class JDBCExampleMySql {
 			case 6:
 				listarMascotas();
 				break;
-			
 			case 0:
 				out.println("Adiós");
 				break;
