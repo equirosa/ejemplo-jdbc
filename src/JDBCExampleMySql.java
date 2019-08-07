@@ -48,6 +48,13 @@ public class JDBCExampleMySql {
 			case 4:
 				eliminar();
 				break;
+			case 5:
+				registrarMascota();
+				break;
+			case 6:
+				listarMascotas();
+				break;
+			
 			case 0:
 				out.println("Adiós");
 				break;
