@@ -64,6 +64,40 @@ public class JDBCExampleMySql {
 		}
 	}
 	
+	private static void listarMascotas() {
+		try {
+			// The newInstance() call is a work around for some
+			// broken Java implementations
+			
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			Connection conn = null;
+			Statement stmt = null;
+			ResultSet rs = null;
+			ArrayList<Mascota> lista = new ArrayList<>();
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/Universidad?" +
+					"user=root&password=");
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM Mascota");
+			while(rs.next())
+			{
+				Mascota p = new Mascota();
+				p.setId(rs.getInt("id_mascota"));
+				p.setNombre(rs.getString("nombre"));
+				p.setRaza(rs.getString("raza"));
+				p.setFechaNac(LocalDate.parse(rs.getString("fecha_nac")));
+				p.setDuenno((Persona) rs.getObject("id_persona"));
+				lista.add(p);
+			}
+			
+			//se imprime el Array list
+			for(Mascota p : lista){
+				out.println(p.toString());
+			}
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+	}
+	
 	private static void registrarMascota() throws IOException {
 		String nombre,raza,cedula;
 		LocalDate fechaNac;
