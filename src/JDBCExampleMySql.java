@@ -108,7 +108,6 @@ public class JDBCExampleMySql {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		ArrayList<Persona> lista = new ArrayList<>();
 		conn = DriverManager.getConnection("jdbc:mysql://localhost/Universidad?" +
 				"user=root&password=");
 		stmt = conn.createStatement();
@@ -221,6 +220,8 @@ public class JDBCExampleMySql {
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			Connection conn = null;
 			Statement stmt = null;
+			listar();
+			out.println("introduzca la nueva info de la Persona.");
 			String[] info = pedirInfoPersona();
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/Universidad?" +
 					"user=root&password=");
