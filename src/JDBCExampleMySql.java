@@ -85,12 +85,13 @@ public class JDBCExampleMySql {
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 			Connection conn = null;
 			Statement stmt = null;
+			String formatoFecha = "%Y-%m-%d";
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/Universidad?" +
 					"user=root&password=");
 			stmt = conn.createStatement();
 			stmt.execute("INSERT INTO Mascota(nombre,raza,fecha_nac,id_persona) VALUES " +
-					"('"+ nombre + "','" + raza + "','" +
-					fechaNac + "," + cedula + "')");
+					"('"+ nombre + "','" + raza + "', STR_TO_DATE('" +
+					fechaNac.toString() +"','" + formatoFecha +"')" + "," + cedula + "')");
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 		}
