@@ -68,18 +68,32 @@ public class JDBCExampleMySql {
 	private static void registrarMascota() throws IOException {
 		String nombre,raza,cedula;
 		LocalDate fechaNac;
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy");
 		out.println("introduzca el nombre de la mascota");
 		nombre=in.readLine();
 		out.println("introduzca su raza");
 		raza=in.readLine();
-		out.println("introduzca la fecha de nacimiento (YYYY/MM/DD)");
-		fechaNac=LocalDate.parse(in.readLine(),formatter);
+		out.println("introduzca la fecha de nacimiento (YYYY-MM-DD)");
+		fechaNac=LocalDate.parse(in.readLine());
 		listar();
 		out.println("seleccione la cedula de uno de las personas registradas.");
 		cedula=in.readLine();
 		
-		
+		try {
+			// The newInstance() call is a work around for some
+			// broken Java implementations
+			
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			Connection conn = null;
+			Statement stmt = null;
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/Universidad?" +
+					"user=root&password=");
+			stmt = conn.createStatement();
+			stmt.execute("INSERT INTO Mascota(nombre,raza,fecha_nac,id_persona) VALUES " +
+					"('"+ nombre + "','" + raza + "','" +
+					fechaNac + "," + cedula + "')");
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		}
 	}
 	
 	public static void listar()
