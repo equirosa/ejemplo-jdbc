@@ -37,8 +37,6 @@ public class JDBCExample{
             out.println("2.Registrar Persona");
             out.println("3.Modificar Persona ");
             out.println("4. Eliminar Persona ");
-            out.println("5. Registrar Mascota\n" +
-                    "6. Listar Mascotas");
             out.println("0.Salir");
             out.println("Digite la opción que dese");
             opcion = Integer.parseInt(in.readLine());
