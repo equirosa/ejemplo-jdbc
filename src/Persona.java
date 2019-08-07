@@ -2,7 +2,11 @@ public class Persona {
     private String nombre;
     private String apellido;
     private String cedula;
-
+    
+    public Persona(String cedula) {
+        this.cedula = cedula;
+    }
+    
     public Persona() {
     }
 

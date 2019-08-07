@@ -85,7 +85,7 @@ public class JDBCExampleMySql {
 				p.setNombre(rs.getString("nombre"));
 				p.setRaza(rs.getString("raza"));
 				p.setFechaNac(LocalDate.parse(rs.getString("fecha_nac")));
-				p.setDuenno((Persona) rs.getObject("id_persona"));
+				p.setDuenno(buscarPersona(rs.getString("id_persona")));
 				lista.add(p);
 			}
 			
@@ -96,6 +96,30 @@ public class JDBCExampleMySql {
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 		}
+	}
+	
+	private static Persona buscarPersona(String id_persona) {
+		try{
+		Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		ArrayList<Persona> lista = new ArrayList<>();
+		conn = DriverManager.getConnection("jdbc:mysql://localhost/Universidad?" +
+				"user=root&password=");
+		stmt = conn.createStatement();
+		rs = stmt.executeQuery("SELECT * FROM Persona");
+		while(rs.next())
+		{
+			if(rs.getString("cedula").equals(id_persona)){
+				return new Persona(rs.getString("nombre"),rs.getString("apellido"),id_persona);
+			}
+		}
+		
+	} catch (Exception ex) {
+		System.out.println(ex.getMessage());
+	}
+		return null;
 	}
 	
 	private static void registrarMascota() throws IOException {
@@ -123,8 +147,8 @@ public class JDBCExampleMySql {
 					"user=root&password=");
 			stmt = conn.createStatement();
 			stmt.execute("INSERT INTO Mascota(nombre,raza,fecha_nac,id_persona) VALUES " +
-					"('"+ nombre + "','" + raza + "', STR_TO_DATE('" +
-					fechaNac.toString() +"','" + formatoFecha +"')" + "," + cedula + "')");
+					"('"+ nombre + "','" + raza + "','" +
+					fechaNac +"','" + cedula + "')");
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 		}
