@@ -68,23 +68,7 @@ public class JDBCExample{
                 out.println("Opción inválida");
         }
     }
-    
-    private static void registrarMascota() throws IOException {
-        String nombre,raza,cedula;
-        LocalDate fechaNac;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy");
-        out.println("introduzca el nombre de la mascota");
-        nombre=in.readLine();
-        out.println("introduzca su raza");
-        raza=in.readLine();
-        out.println("introduzca la fecha de nacimiento (YYYY/MM/DD)");
-        fechaNac=LocalDate.parse(in.readLine(),formatter);
-        listar();
-        out.println("seleccione la cedula de uno de las personas registradas.");
-        cedula=in.readLine();
-        
-        
-    }
+   
     
     public static void listar()
     {
