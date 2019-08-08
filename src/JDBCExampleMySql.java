@@ -74,9 +74,9 @@ public class JDBCExampleMySql {
 			// broken Java implementations
 			
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-			Connection conn = null;
-			Statement stmt = null;
-			ResultSet rs = null;
+			Connection conn;
+			Statement stmt;
+			ResultSet rs;
 			ArrayList<Mascota> lista = new ArrayList<>();
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/Universidad?" +
 					"user=root&password=");
@@ -105,9 +105,9 @@ public class JDBCExampleMySql {
 	private static Persona buscarPersona(String id_persona) {
 		try{
 		Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-		Connection conn = null;
-		Statement stmt = null;
-		ResultSet rs = null;
+		Connection conn;
+		Statement stmt ;
+		ResultSet rs;
 		conn = DriverManager.getConnection("jdbc:mysql://localhost/Universidad?" +
 				"user=root&password=");
 		stmt = conn.createStatement();
@@ -143,9 +143,8 @@ public class JDBCExampleMySql {
 			// broken Java implementations
 			
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-			Connection conn = null;
-			Statement stmt = null;
-			String formatoFecha = "%Y-%m-%d";
+			Connection conn;
+			Statement stmt;
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/Universidad?" +
 					"user=root&password=");
 			stmt = conn.createStatement();
@@ -164,9 +163,9 @@ public class JDBCExampleMySql {
 			// broken Java implementations
 			
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-			Connection conn = null;
-			Statement stmt = null;
-			ResultSet rs = null;
+			Connection conn;
+			Statement stmt;
+			ResultSet rs;
 			ArrayList<Persona> lista = new ArrayList<>();
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/Universidad?" +
 					"user=root&password=");
@@ -197,8 +196,8 @@ public class JDBCExampleMySql {
 			// broken Java implementations
 			
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-			Connection conn = null;
-			Statement stmt = null;
+			Connection conn;
+			Statement stmt;
 			String[] info = pedirInfoPersona();
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/Universidad?" +
 					"user=root&password=");
@@ -218,8 +217,8 @@ public class JDBCExampleMySql {
 			// broken Java implementations
 			
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-			Connection conn = null;
-			Statement stmt = null;
+			Connection conn;
+			Statement stmt;
 			listar();
 			out.println("introduzca la nueva info de la Persona.");
 			String[] info = pedirInfoPersona();
@@ -254,8 +253,8 @@ public class JDBCExampleMySql {
 			// broken Java implementations
 			
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-			Connection conn = null;
-			Statement stmt = null;
+			Connection conn;
+			Statement stmt;
 			out.println("introduzca la cedula del usuario que desea eliminar.");
 			String cedula = in.readLine();
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/Universidad?" +
